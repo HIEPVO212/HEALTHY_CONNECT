@@ -1,0 +1,268 @@
+:root {
+    --primary: #00bcd4;
+    --secondary: #0097a7;
+    --bg-gray: #e0e0e0;
+}
+
+body {
+    background-color: var(--bg-gray);
+    font-family: sans-serif;
+}
+
+/* Navigation Bar */
+.top-nav {
+    background: white;
+    padding: 10px;
+    border-bottom: 2px solid var(--primary);
+}
+
+.nav-item-custom {
+    cursor: pointer;
+    color: #555;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.nav-item-custom:hover, 
+.nav-item-custom.active {
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary);
+}
+
+/* General Container */
+.page-content {
+    display: none;
+    background: white;
+    min-height: 80vh;
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.page-content.active {
+    display: block;
+}
+
+/* Header Blue Section */
+.blue-header {
+    background: var(--primary);
+    color: white;
+    padding: 20px;
+    position: relative;
+}
+
+.blue-header img {
+    width: 100%;
+    max-width: 400px;
+    float: right;
+}
+
+/* Components */
+.card-menu {
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    height: 100%;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.card-menu:hover {
+    opacity: 0.8;
+    transform: translateY(-5px);
+}
+
+.bg-blue { background-color: #2196f3; }
+.bg-orange { background-color: #ff9800; }
+.bg-teal { background-color: #009688; }
+.bg-cyan { background-color: #00bcd4; }
+
+.list-item {
+    border-bottom: 1px solid #eee;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.list-item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #ddd;
+    margin-right: 15px;
+}
+
+.btn-select {
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 25px;
+}
+
+/* Doctor Detail Table */
+.time-slot {
+    border: 1px solid #ddd;
+    padding: 5px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.time-slot:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.success-box {
+    text-align: center;
+    padding: 50px;
+}
+
+.success-icon {
+    font-size: 80px;
+    color: var(--primary);  
+    margin-bottom: 20px;
+}
+.bg-red { background-color: #f44336; }
+
+.emergency-circle {
+    width: 120px;
+    height: 120px;
+    background-color: #ffcdd2;
+    color: #d32f2f;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(244, 67, 54, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 67, 54, 0); }
+}
+
+.btn-outline-teal {
+    border: 1px solid #009688;
+    color: #009688;
+}
+
+.btn-outline-teal:hover {
+    background: #009688;
+    color: white;
+}
+/* Style cho trang Liên hệ */
+.contact-icon-box {
+    width: 40px;
+    height: 40px;
+    background: #e0f7fa;
+    color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+#contact .form-control {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+#contact .form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(0, 188, 212, 0.25);
+}
+
+#contact h6 {
+    font-weight: bold;
+    color: #555;
+}
+a {
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.shadow {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+    /* Hiệu ứng nhấp nháy cho nút Cấp cứu */
+        .pulse-btn {
+            width: 80px; height: 80px; background: #ff5e5e; color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 2rem auto; font-size: 2rem; animation: pulse 1.5s infinite;
+            cursor: pointer; text-decoration: none;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 94, 94, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(255, 94, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 94, 94, 0); }
+        }
+}
+/* --- NAVIGATION MOBILE FIRST --- */
+
+/* 1. Mặc định cho Mobile (Ẩn menu, hiện nút bấm) */
+.nav-links-wrapper {
+    display: none; /* Ẩn menu đi */
+    flex-direction: column;
+    position: absolute;
+    top: 100%; /* Hiện ngay dưới thanh nav */
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 1rem;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    z-index: 999;
+    border-top: 1px solid #eee;
+}
+
+/* Khi bấm nút Toggle sẽ thêm class này để hiện menu */
+.nav-links-wrapper.show {
+    display: flex;
+}
+
+.menu-toggle {
+    cursor: pointer;
+    padding: 5px;
+}
+
+.nav-item-custom {
+    display: block;
+    padding: 10px 15px;
+    border-bottom: 1px solid #f9f9f9;
+}
+
+/* 2. Cho màn hình Máy tính (Desktop - Lớn hơn 992px) */
+@media (min-width: 992px) {
+    .menu-toggle {
+        display: none !important; /* Ẩn nút hamburger */
+    }
+    
+    .nav-links-wrapper {
+        display: flex !important; /* Luôn hiện menu */
+        flex-direction: row;
+        position: static;
+        width: auto;
+        box-shadow: none;
+        padding: 0;
+        border-top: none;
+    }
+
+    .nav-item-custom {
+        border-bottom: none;
+    }
+}
