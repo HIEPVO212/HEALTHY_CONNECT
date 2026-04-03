@@ -1,268 +1,271 @@
 :root {
-    --primary: #00bcd4;
-    --secondary: #0097a7;
-    --bg-gray: #e0e0e0;
-}
-
-body {
-    background-color: var(--bg-gray);
-    font-family: sans-serif;
-}
-
-/* Navigation Bar */
-.top-nav {
-    background: white;
-    padding: 10px;
-    border-bottom: 2px solid var(--primary);
-}
-
-.nav-item-custom {
-    cursor: pointer;
-    color: #555;
-    padding: 5px 10px;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-.nav-item-custom:hover, 
-.nav-item-custom.active {
-    color: var(--primary);
-    border-bottom: 2px solid var(--primary);
-}
-
-/* General Container */
-.page-content {
-    display: none;
-    background: white;
-    min-height: 80vh;
-    margin-top: 20px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.page-content.active {
-    display: block;
-}
-
-/* Header Blue Section */
-.blue-header {
-    background: var(--primary);
-    color: white;
-    padding: 20px;
-    position: relative;
-}
-
-.blue-header img {
-    width: 100%;
-    max-width: 400px;
-    float: right;
-}
-
-/* Components */
-.card-menu {
-    color: white;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    height: 100%;
-    transition: 0.3s;
-    cursor: pointer;
-}
-
-.card-menu:hover {
-    opacity: 0.8;
-    transform: translateY(-5px);
-}
-
-.bg-blue { background-color: #2196f3; }
-.bg-orange { background-color: #ff9800; }
-.bg-teal { background-color: #009688; }
-.bg-cyan { background-color: #00bcd4; }
-
-.list-item {
-    border-bottom: 1px solid #eee;
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.list-item img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: #ddd;
-    margin-right: 15px;
-}
-
-.btn-select {
-    background: var(--primary);
-    color: white;
-    border: none;
-    border-radius: 20px;
-    padding: 5px 25px;
-}
-
-/* Doctor Detail Table */
-.time-slot {
-    border: 1px solid #ddd;
-    padding: 5px;
-    text-align: center;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 12px;
-    margin-bottom: 5px;
-}
-
-.time-slot:hover {
-    background: var(--primary);
-    color: white;
-}
-
-.success-box {
-    text-align: center;
-    padding: 50px;
-}
-
-.success-icon {
-    font-size: 80px;
-    color: var(--primary);  
-    margin-bottom: 20px;
-}
-.bg-red { background-color: #f44336; }
-
-.emergency-circle {
-    width: 120px;
-    height: 120px;
-    background-color: #ffcdd2;
-    color: #d32f2f;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(244, 67, 54, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 67, 54, 0); }
-}
-
-.btn-outline-teal {
-    border: 1px solid #009688;
-    color: #009688;
-}
-
-.btn-outline-teal:hover {
-    background: #009688;
-    color: white;
-}
-/* Style cho trang Liên hệ */
-.contact-icon-box {
-    width: 40px;
-    height: 40px;
-    background: #e0f7fa;
-    color: var(--primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
-}
-
-#contact .form-control {
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    padding: 10px;
-}
-
-#contact .form-control:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 0.2rem rgba(0, 188, 212, 0.25);
-}
-
-#contact h6 {
-    font-weight: bold;
-    color: #555;
-}
-a {
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-.shadow {
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
-    /* Hiệu ứng nhấp nháy cho nút Cấp cứu */
-        .pulse-btn {
-            width: 80px; height: 80px; background: #ff5e5e; color: white;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin: 2rem auto; font-size: 2rem; animation: pulse 1.5s infinite;
-            cursor: pointer; text-decoration: none;
+            --primary-color: #2281c4; /* Màu xanh chuẩn theo ảnh của bạn */
+            --primary-gradient: linear-gradient(90deg, #00d2ff 0%, #2281c4 100%);
+            --bg-light: #f8faff;
+            --text-dark: #2d3436;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 94, 94, 0.7); }
-            70% { box-shadow: 0 0 0 20px rgba(255, 94, 94, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 94, 94, 0); }
+
+        body { 
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
         }
-}
-/* --- NAVIGATION MOBILE FIRST --- */
 
-/* 1. Mặc định cho Mobile (Ẩn menu, hiện nút bấm) */
-.nav-links-wrapper {
-    display: none; /* Ẩn menu đi */
-    flex-direction: column;
-    position: absolute;
-    top: 100%; /* Hiện ngay dưới thanh nav */
-    left: 0;
-    width: 100%;
-    background: white;
-    padding: 1rem;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-    z-index: 999;
-    border-top: 1px solid #eee;
-}
+        /* --- NAVIGATION (Tab Style like your image) --- */
+        .navbar {
+            background: white !important;
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
 
-/* Khi bấm nút Toggle sẽ thêm class này để hiện menu */
-.nav-links-wrapper.show {
-    display: flex;
-}
+        .nav-link {
+            font-weight: 600;
+            color: #636e72 !important;
+            padding: 1.5rem 1rem !important;
+            position: relative;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
 
-.menu-toggle {
-    cursor: pointer;
-    padding: 5px;
-}
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
 
-.nav-item-custom {
-    display: block;
-    padding: 10px 15px;
-    border-bottom: 1px solid #f9f9f9;
-}
+        .nav-link.active {
+            color: var(--primary-color) !important;
+        }
 
-/* 2. Cho màn hình Máy tính (Desktop - Lớn hơn 992px) */
-@media (min-width: 992px) {
-    .menu-toggle {
-        display: none !important; /* Ẩn nút hamburger */
-    }
-    
-    .nav-links-wrapper {
-        display: flex !important; /* Luôn hiện menu */
-        flex-direction: row;
-        position: static;
-        width: auto;
-        box-shadow: none;
-        padding: 0;
-        border-top: none;
-    }
+        /* Thanh gạch chân màu xanh giống ảnh bạn gửi */
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 15%;
+            width: 70%;
+            height: 4px;
+            background: var(--primary-gradient);
+            border-radius: 4px 4px 0 0;
+        }
 
-    .nav-item-custom {
-        border-bottom: none;
-    }
-}
+        /* --- Layout --- */
+        .page-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .page-content { display: none; animation: fadeIn 0.4s ease; }
+        .page-content.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Common UI Components --- */
+        .section-title {
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--text-dark);
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+        }
+
+        .data-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: 0.3s;
+            border: 1px solid #eee;
+        }
+
+        .data-card:hover { transform: translateY(-3px); box-shadow: var(--card-shadow); }
+
+        .btn-modern {
+            background: var(--primary-gradient);
+            color: white; border: none; padding: 10px 25px;
+            border-radius: 10px; font-weight: 600; transition: 0.3s;
+        }
+
+        .btn-modern:hover { opacity: 0.9; box-shadow: 0 5px 15px rgba(34, 129, 196, 0.3); color: white; }
+
+        /* Form styling */
+        .form-control {
+            border-radius: 10px; padding: 12px; border: 1px solid #e0e0e0;
+        }
+
+        /* 3D Hospital Card Styling */
+        .hospital-card-3d {
+            background: linear-gradient(145deg, #ffffff, #f0f4f8);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 6px 6px 12px #d9dce1, -6px -6px 12px #ffffff;
+            border: 1px solid rgba(255,255,255,0.8);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        .hospital-card-3d:hover {
+            transform: translateY(-8px) scale(1.02) rotateX(3deg);
+            box-shadow: 10px 15px 25px rgba(34, 129, 196, 0.15), -8px -8px 20px rgba(255, 255, 255, 0.9);
+            border-color: rgba(34, 129, 196, 0.3);
+        }
+        .hospital-img-3d {
+            width: 85px;
+            height: 85px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.4s;
+        }
+        .hospital-card-3d:hover .hospital-img-3d {
+            transform: translateZ(30px) scale(1.05);
+            box-shadow: 8px 8px 15px rgba(0,0,0,0.2);
+        }
+        .hospital-details {
+            flex-grow: 1;
+            margin-left: 20px;
+            transition: transform 0.4s;
+        }
+        .hospital-card-3d:hover .hospital-details {
+            transform: translateZ(20px);
+        }
+        .btn-3d {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.2s;
+            box-shadow: 0 5px 0 #155d8f, 0 6px 15px rgba(0,0,0,0.2);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            transform: translateZ(10px);
+        }
+        .btn-3d:hover {
+            color: white;
+            box-shadow: 0 4px 0 #155d8f, 0 5px 12px rgba(0,0,0,0.2);
+            transform: translateZ(10px) translateY(1px);
+        }
+        .btn-3d:active {
+            box-shadow: 0 0 0 #155d8f, 0 2px 5px rgba(0,0,0,0.2);
+            transform: translateZ(10px) translateY(5px);
+        }
+
+        /* 3D Pagination */
+        .pagination-3d {
+            gap: 8px;
+        }
+        .pagination-3d .page-item .page-link {
+            border: none;
+            border-radius: 10px;
+            color: var(--text-dark);
+            background: #f4f6fa;
+            box-shadow: 3px 3px 6px #d5d7db, -3px -3px 6px #ffffff;
+            transition: all 0.3s;
+            font-weight: 600;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .pagination-3d .page-item.active .page-link {
+            background: var(--primary-color) !important;
+            color: white !important;
+            box-shadow: inset 3px 3px 6px rgba(0,0,0,0.3), inset -3px -3px 6px rgba(255,255,255,0.2) !important;
+            transform: translateY(2px);
+        }
+        .pagination-3d .page-item.disabled .page-link {
+            opacity: 0.5;
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .pagination-3d .page-item .page-link:hover:not(.active):not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 4px 4px 10px #d5d7db, -4px -4px 10px #ffffff;
+            color: var(--primary-color);
+        }
+        
+        /* Input 3D */
+        .input-3d {
+            background: #f4f6fa;
+            border: none;
+            box-shadow: inset 3px 3px 6px #d5d7db, inset -3px -3px 6px #ffffff;
+            transition: all 0.3s;
+            padding: 15px 20px;
+            border-radius: 12px;
+        }
+        .input-3d:focus {
+            background: #ffffff;
+            box-shadow: 3px 3px 8px #d5d7db, -3px -3px 8px #ffffff;
+            outline: none;
+            color: var(--primary-color);
+        }
+
+        /* Doctor Card 3D Styling */
+        .doctor-card-3d {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 24px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 6px 6px 12px #d9dce1, -6px -6px 12px #ffffff;
+            border: 1px solid rgba(255,255,255,0.8);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        .doctor-card-3d:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 10px 15px 25px rgba(34, 129, 196, 0.15), -8px -8px 20px rgba(255, 255, 255, 0.9);
+            border-color: rgba(34, 129, 196, 0.3);
+        }
+        .doctor-avatar-wrap {
+            position: relative;
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(135deg, var(--primary-color), #00d2ff);
+            box-shadow: 0 5px 15px rgba(34, 129, 196, 0.3);
+        }
+        .doctor-avatar-3d {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            transition: transform 0.4s;
+        }
+        .doctor-card-3d:hover .doctor-avatar-3d {
+            transform: translateZ(15px) scale(1.05);
+        }
+        .doctor-info-item {
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            color: #555;
+            display: flex;
+            align-items: flex-start;
+        }
+        .doctor-info-item i {
+            margin-top: 3px;
+            width: 25px;
+            color: var(--primary-color);
+            text-align: center;
+        }
