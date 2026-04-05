@@ -1,13 +1,145 @@
 :root {
+    --primary-color: #2281c4;
+    /* Màu xanh chuẩn theo ảnh của bạn */
+    --primary-gradient: linear-gradient(90deg, #00d2ff 0%, #2281c4 100%);
+    --bg-light: #f8faff;
+    --text-dark: #2d3436;
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+    /* Biến cũ của style.css */
     --primary: #00bcd4;
     --secondary: #0097a7;
     --bg-gray: #e0e0e0;
 }
 
 body {
-    background-color: var(--bg-gray);
-    font-family: sans-serif;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
 }
+
+/* --- NAVIGATION (Tab Style like your image) --- */
+.navbar {
+    background: white !important;
+    padding: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.nav-link {
+    font-weight: 600;
+    color: #636e72 !important;
+    padding: 1.5rem 1rem !important;
+    position: relative;
+    transition: all 0.3s;
+    font-size: 0.95rem;
+}
+
+.nav-link:hover {
+    color: var(--primary-color) !important;
+    background-color: rgba(34, 129, 196, 0.05);
+    border-radius: 12px;
+}
+
+.nav-link.active {
+    color: var(--primary-color) !important;
+}
+
+/* Thanh gạch chân màu xanh giống ảnh bạn gửi */
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 15%;
+    width: 70%;
+    height: 4px;
+    background: var(--primary-gradient);
+    border-radius: 4px 4px 0 0;
+}
+
+/* --- Layout --- */
+.page-container {
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 0 40px;
+}
+
+.page-content {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.page-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Common UI Components --- */
+.section-title {
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: var(--text-dark);
+    border-left: 5px solid var(--primary-color);
+    padding-left: 15px;
+}
+
+.data-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.3s;
+    border: 1px solid #eee;
+}
+
+.data-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+    border-color: var(--primary-color);
+}
+
+.btn-modern {
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-modern:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(34, 129, 196, 0.3);
+    background: linear-gradient(90deg, #2281c4 0%, #00d2ff 100%);
+    color: white;
+}
+
+.btn-modern:active {
+    transform: translateY(0);
+}
+
+/* Form styling */
+.form-control {
+    border-radius: 10px;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+}
+
+/* --- CŨ TỪ STYLE.CSS --- */
 
 /* Navigation Bar */
 .top-nav {
@@ -24,7 +156,7 @@ body {
     font-size: 14px;
 }
 
-.nav-item-custom:hover, 
+.nav-item-custom:hover,
 .nav-item-custom.active {
     color: var(--primary);
     border-bottom: 2px solid var(--primary);
@@ -37,8 +169,8 @@ body {
     min-height: 80vh;
     margin-top: 20px;
     border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    /* overflow: hidden; -> Xóa bỏ dòng này để cho phép Banner (.full-width-banner) được phép bung tràn ra lề màn hình */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .page-content.active {
@@ -75,10 +207,21 @@ body {
     transform: translateY(-5px);
 }
 
-.bg-blue { background-color: #2196f3; }
-.bg-orange { background-color: #ff9800; }
-.bg-teal { background-color: #009688; }
-.bg-cyan { background-color: #00bcd4; }
+.bg-blue {
+    background-color: #2196f3;
+}
+
+.bg-orange {
+    background-color: #ff9800;
+}
+
+.bg-teal {
+    background-color: #009688;
+}
+
+.bg-cyan {
+    background-color: #00bcd4;
+}
 
 .list-item {
     border-bottom: 1px solid #eee;
@@ -127,10 +270,13 @@ body {
 
 .success-icon {
     font-size: 80px;
-    color: var(--primary);  
+    color: var(--primary);
     margin-bottom: 20px;
 }
-.bg-red { background-color: #f44336; }
+
+.bg-red {
+    background-color: #f44336;
+}
 
 .emergency-circle {
     width: 120px;
@@ -146,9 +292,20 @@ body {
 }
 
 @keyframes pulse {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(244, 67, 54, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 67, 54, 0); }
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 20px rgba(244, 67, 54, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(244, 67, 54, 0);
+    }
 }
 
 .btn-outline-teal {
@@ -160,6 +317,7 @@ body {
     background: #009688;
     color: white;
 }
+
 /* Style cho trang Liên hệ */
 .contact-icon-box {
     width: 40px;
@@ -189,6 +347,7 @@ body {
     font-weight: bold;
     color: #555;
 }
+
 a {
     text-decoration: none;
     transition: 0.3s;
@@ -199,33 +358,55 @@ a:hover {
 }
 
 .shadow {
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+
     /* Hiệu ứng nhấp nháy cho nút Cấp cứu */
-        .pulse-btn {
-            width: 80px; height: 80px; background: #ff5e5e; color: white;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin: 2rem auto; font-size: 2rem; animation: pulse 1.5s infinite;
-            cursor: pointer; text-decoration: none;
+    .pulse-btn {
+        width: 80px;
+        height: 80px;
+        background: #ff5e5e;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 2rem auto;
+        font-size: 2rem;
+        animation: pulse 1.5s infinite;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(255, 94, 94, 0.7);
         }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 94, 94, 0.7); }
-            70% { box-shadow: 0 0 0 20px rgba(255, 94, 94, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 94, 94, 0); }
+
+        70% {
+            box-shadow: 0 0 0 20px rgba(255, 94, 94, 0);
         }
+
+        100% {
+            box-shadow: 0 0 0 0 rgba(255, 94, 94, 0);
+        }
+    }
 }
+
 /* --- NAVIGATION MOBILE FIRST --- */
 
 /* 1. Mặc định cho Mobile (Ẩn menu, hiện nút bấm) */
 .nav-links-wrapper {
-    display: none; /* Ẩn menu đi */
+    display: none;
+    /* Ẩn menu đi */
     flex-direction: column;
     position: absolute;
-    top: 100%; /* Hiện ngay dưới thanh nav */
+    top: 100%;
+    /* Hiện ngay dưới thanh nav */
     left: 0;
     width: 100%;
     background: white;
     padding: 1rem;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
     z-index: 999;
     border-top: 1px solid #eee;
 }
@@ -249,11 +430,13 @@ a:hover {
 /* 2. Cho màn hình Máy tính (Desktop - Lớn hơn 992px) */
 @media (min-width: 992px) {
     .menu-toggle {
-        display: none !important; /* Ẩn nút hamburger */
+        display: none !important;
+        /* Ẩn nút hamburger */
     }
-    
+
     .nav-links-wrapper {
-        display: flex !important; /* Luôn hiện menu */
+        display: flex !important;
+        /* Luôn hiện menu */
         flex-direction: row;
         position: static;
         width: auto;
@@ -265,4 +448,236 @@ a:hover {
     .nav-item-custom {
         border-bottom: none;
     }
+}
+
+/* Chuyên khoa: Hover Xem thêm đổi màu đỏ */
+.specialtySwiper .card:hover small,
+.related-specialty-slide:hover small {
+    color: #ff4d4d !important;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+/* =========================================
+   THÊM MỚI THEO YÊU CẦU UI NÂNG CẤP
+=========================================== */
+.hover-opacity:hover {
+    opacity: 0.8 !important;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.cursor-pointer:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(34, 129, 196, 0.15) !important;
+}
+
+/* Tắt hiệu ứng nhảy (Hover) cho Banner chính */
+.mainBannerSwiper .swiper-slide:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.mainBannerSwiper .swiper-slide:hover img {
+    transform: none !important;
+}
+
+/* Image zoom effect within cards */
+.card-img-top,
+.card img,
+.w-100.overflow-hidden img {
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.card:hover .card-img-top,
+.cursor-pointer:hover img,
+.card:hover img {
+    transform: scale(1.1);
+}
+
+.card {
+    overflow: hidden;
+    /* Ensure image scaling doesn't break card borders */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Footer Links */
+.custom-footer-links a {
+    transition: 0.3s;
+}
+
+.custom-footer-links a:hover {
+    color: #ffc107 !important;
+    padding-left: 5px;
+}
+
+/* Chatbot UI */
+.chat-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    z-index: 1000;
+    transition: transform 0.3s;
+}
+
+.chat-btn:hover {
+    transform: scale(1.1);
+}
+
+.chatbot-panel {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 320px;
+    background: white;
+    z-index: 1001;
+    display: none;
+    border: 1px solid #ddd;
+}
+
+/* Floating Sidebar (Banner hông trái) */
+.floating-sidebar {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 20px;
+    z-index: 900;
+    width: 120px;
+}
+
+.side-banner {
+    border: 2px solid white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+    background: white;
+}
+
+.side-banner:hover {
+    transform: translateX(5px);
+}
+
+/* Swiper Customize */
+.swiper-pagination-bullet-active {
+    background: var(--primary-color) !important;
+}
+
+.swiper-wrapper {
+    padding-bottom: 40px !important;
+}
+
+.specialtySwiper .swiper-wrapper,
+.doctorSwiper .swiper-wrapper {
+    padding-bottom: 20px !important;
+}
+
+/* ============================
+   Custom Styles cho Main Banner
+=============================== */
+.mainBannerSwiper {
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+    /* Chống sập khung giao diện khi ảnh tải chậm hoặc lỗi tải */
+    background: #f8faff;
+}
+
+.mainBannerSwiper .swiper-wrapper {
+    padding-bottom: 0 !important;
+}
+
+/* Full Width Banner CSS Hack Tối Ưu */
+.full-width-banner {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+body {
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
+}
+
+.banner-img-full {
+    object-fit: cover;
+    width: 100%;
+    min-height: 400px;
+    max-height: 550px;
+    background-color: #f0f0f0;
+    /* Hiển thị màu nền xám nếu ảnh tải chậm */
+}
+
+/* Swiper Buttons & Dots */
+.mainBannerSwiper .swiper-button-next,
+.mainBannerSwiper .swiper-button-prev {
+    color: white;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 30px 20px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.mainBannerSwiper .swiper-button-next:hover,
+.mainBannerSwiper .swiper-button-prev:hover {
+    background: var(--primary-color);
+}
+
+.mainBannerSwiper .swiper-pagination {
+    bottom: 15px !important;
+}
+
+.mainBannerSwiper .swiper-pagination-bullet {
+    background: white !important;
+    opacity: 0.6 !important;
+    width: 10px;
+    height: 10px;
+    transition: 0.3s;
+}
+
+.mainBannerSwiper .swiper-pagination-bullet-active {
+    background: var(--primary-color) !important;
+    opacity: 1 !important;
+    width: 30px;
+    border-radius: 5px;
+}
+
+/* --- DOCTOR NAVIGATION --- */
+.doctor-prev, .doctor-next {
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.doctor-prev:hover, .doctor-next:hover {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.doctor-detail-item {
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.doctor-bio {
+    background: linear-gradient(to right, #f0f7ff, #ffffff);
+}
+
+/* Kiểu cho tên bác sĩ trên 1 dòng */
+.doctor-name {
+    font-size: 0.85rem !important; /* Nhỏ hơn một chút để vừa */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    width: 100%;
 }
