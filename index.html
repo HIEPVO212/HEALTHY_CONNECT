@@ -1208,76 +1208,317 @@
         </section>
 
         <!-- 2. CƠ SỞ Y TẾ -->
-        <section id="dv1" class="page-content">
-            <h5 class="section-title">Danh sách Cơ sở y tế</h5>
-            <input type="text" class="form-control mb-4 shadow-sm" placeholder="Tìm tên bệnh viện, phòng khám...">
-            <div class="data-card">
-                <div class="d-flex align-items-center">
-                    <img src="https://nld.mediacdn.vn/291774122806476800/2022/6/2/img0247-1654168955116160099679.jpg"
-                        class="rounded-3 me-3" width="70">
-                    <div>
-                        <h6 class="fw-bold mb-0">Bệnh viện Đa Khoa Đồng Nai</h6><small class="text-muted">Biên Hòa, Đồng
-                            Nai</small>
+        <section id="dv1" class="page-content bg-light premium-section-padding">
+            <div class="container py-4 bg-white rounded-4 shadow-sm" style="max-width: 1200px; margin: auto;">
+                <!-- Đã loại bỏ Breadcrumb theo yêu cầu -->
+
+                <div class="text-center mb-5 mt-2">
+                    <h3 class="fw-bold text-primary text-uppercase mb-2"><i class="fas fa-hospital-alt"></i> DANH SÁCH
+                        BỆNH VIỆN</h3>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <span
+                            style="width: 40px; height: 1px; background-color: #a0cdef; display: inline-block;"></span>
+                        <i class="fas fa-plus mx-2" style="color: #4da6e7; font-size: 0.8rem;"></i>
+                        <span
+                            style="width: 40px; height: 1px; background-color: #a0cdef; display: inline-block;"></span>
                     </div>
                 </div>
-                <button class="btn btn-modern" onclick="navigate('dv3')">Đặt lịch</button>
+
+                <!-- Ô TÌM KIẾM -->
+                <div class="px-md-5 mb-5">
+                    <div class="input-group shadow-sm rounded-pill overflow-hidden border">
+                        <span class="input-group-text bg-white border-0 ps-4 text-primary"><i
+                                class="fas fa-search"></i></span>
+                        <input type="text" class="form-control border-0 py-3"
+                            placeholder="Tìm kiếm tên bệnh viện, cơ sở y tế..." id="hospitalSearchInput"
+                            oninput="searchHospitals()">
+                    </div>
+                </div>
+
+                <!-- DANH SÁCH BỆNH VIỆN SẼ ĐƯỢC JAVASCRIPT RENDER VÀO ĐÂY -->
+                <div class="row g-4 px-lg-4 mb-4" id="hospital-list-container">
+                    <!-- Javascript Data -->
+                </div>
+
+                <!-- THANH PHÂN TRANG -->
+                <nav aria-label="Page navigation" class="mt-5">
+                    <ul class="pagination justify-content-center custom-pagination" id="hospital-pagination">
+                        <!-- Phân trang sẽ render tự động bằng Javascript -->
+                    </ul>
+                </nav>
             </div>
         </section>
 
         <!-- 3. ĐẶT LỊCH KHÁM (General Booking) -->
-        <section id="dv3" class="page-content">
-            <h5 class="section-title">Đặt lịch khám nhanh</h5>
-            <div class="card border-0 shadow-sm rounded-4 p-4">
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <label class="form-label fw-bold">Chọn chuyên khoa</label>
-                        <select class="form-select form-control">
-                            <option>Khoa Nội</option>
-                            <option>Khoa Nhi</option>
-                            <option>Khoa Sản</option>
-                            <option>Tai Mũi Họng</option>
-                        </select>
+        <section id="dv3" class="page-content bg-light premium-section-padding">
+            <div class="container py-4 bg-white rounded-4 shadow-sm" style="max-width: 800px; margin: auto;">
+                <!-- Đã loại bỏ Breadcrumb -->
+
+                <div class="text-center mb-5 mt-2 position-relative">
+                    <div class="position-absolute top-50 start-50 translate-middle"
+                        style="width: 150px; height: 40px; background: rgba(13, 202, 240, 0.1); filter: blur(20px); border-radius: 50%; z-index: 0;">
                     </div>
-                    <div class="col-md-6">
-                        <label class="form-label fw-bold">Ngày khám mong muốn</label>
-                        <input type="date" class="form-control">
-                    </div>
-                    <div class="col-12">
-                        <label class="form-label fw-bold">Triệu chứng lâm sàng</label>
-                        <textarea class="form-control" rows="3"
-                            placeholder="Mô tả sơ lược tình trạng sức khỏe..."></textarea>
+                    <h2 class="fw-bold text-primary text-uppercase mb-2 position-relative z-1"
+                        style="letter-spacing: 1px; text-shadow: 2px 2px 4px rgba(0,0,0,0.05);"><i
+                            class="fas fa-calendar-check text-info me-2"></i> ĐẶT LỊCH KHÁM</h2>
+                    <div class="d-flex justify-content-center align-items-center position-relative z-1">
+                        <span
+                            style="width: 60px; height: 2px; background: linear-gradient(90deg, transparent, #4da6e7); display: inline-block;"></span>
+                        <i class="fas fa-plus mx-3" style="color: #4da6e7; font-size: 0.8rem;"></i>
+                        <span
+                            style="width: 60px; height: 2px; background: linear-gradient(270deg, transparent, #4da6e7); display: inline-block;"></span>
                     </div>
                 </div>
-                <button class="btn btn-modern w-100 mt-4 py-3" onclick="navigate('dv5')">Tiếp tục bước xác nhận</button>
-            </div>
+
+                <!-- Empty State: Yêu cầu chọn cơ sở hoặc bác sĩ -->
+                <div id="booking-empty-state" class="text-center py-5 booking-3d-card">
+                    <div class="icon-pulse-wrapper mb-4">
+                        <img src="https://cdn-icons-png.flaticon.com/512/7486/7486744.png" width="140" alt="Empty"
+                            style="filter: drop-shadow(0 15px 15px rgba(0,0,0,0.1));">
+                    </div>
+                    <h4 class="fw-bold text-dark mb-4 mt-3" style="letter-spacing: 0.5px;">Vui lòng chọn Cơ sở y tế hoặc
+                        Bác sĩ trước khi đặt lịch</h4>
+                    <div class="d-flex flex-wrap justify-content-center gap-4 mt-4">
+                        <button class="btn btn-outline-primary rounded-pill px-5 py-3 fw-bold booking-floating-btn"
+                            onclick="navigate('dv1')" style="box-shadow: 0 10px 20px rgba(23,75,147,0.1);"><i
+                                class="fas fa-hospital me-2 fs-5"></i> Chọn Cơ Sở Y Tế</button>
+                        <button class="btn btn-primary rounded-pill px-5 py-3 fw-bold booking-floating-btn"
+                            onclick="navigate('dv2')" style="box-shadow: 0 10px 20px rgba(13,202,240,0.25);"><i
+                                class="fas fa-user-md me-2 fs-5"></i> Chọn Bác Sĩ</button>
+                    </div>
+                </div>
+
+                <!-- Form State: Đã chọn cơ sở hoặc bác sĩ -->
+                <div id="booking-form-state" style="display: none; perspective: 1000px;">
+
+                    <!-- Hiển thị thông tin Cơ sở y tế / Bác sĩ đã chọn -->
+                    <div class="card border-0 bg-white rounded-5 mb-4 booking-target-3d" id="selected-target-info">
+                        <div class="card-body d-flex align-items-center gap-4 position-relative p-4">
+                            <div class="rounded-circle overflow-hidden flex-shrink-0 target-img-glow"
+                                style="width: 100px; height: 100px; border: 4px solid #fff;"
+                                id="selected-image-wrapper">
+                                <img src="" id="selected-target-img" class="w-100 h-100 object-fit-cover">
+                            </div>
+                            <div class="pe-4 flex-grow-1">
+                                <span class="badge bg-primary mb-2 px-3 py-2 rounded-pill fs-7 shadow-sm"
+                                    id="selected-target-type">Cơ sở y tế</span>
+                                <h4 class="fw-bold text-primary mb-2" id="selected-target-name">Tên Bệnh Viện</h4>
+                                <div class="text-secondary fw-medium" id="selected-target-desc"><i
+                                        class="fas fa-map-marker-alt text-danger me-1"></i> Khu vực...</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 rounded-5 p-4 mt-4 booking-form-3d">
+                        <div class="card-body p-md-3">
+                            <h5 class="fw-bold text-dark mb-4 border-bottom pb-3"><i
+                                    class="fas fa-clipboard-list text-primary me-2"></i> Chi tiết lịch khám</h5>
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold text-secondary">Chọn chuyên khoa <span
+                                            class="text-danger">*</span></label>
+                                    <div class="custom-select-wrapper">
+                                        <select class="form-select form-control custom-3d-input"
+                                            id="booking-specialty-select" onchange="checkBookingFormValidity()">
+                                            <!-- Sẽ được fill bằng JavaScript -->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold text-secondary">Ngày khám mong muốn <span
+                                            class="text-danger">*</span></label>
+                                    <input type="date" class="form-control custom-3d-input" id="booking-date-input" onchange="checkBookingFormValidity()">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-bold text-secondary">Triệu chứng lâm sàng / Lý do
+                                        khám</label>
+                                    <textarea class="form-control custom-3d-input" rows="4" id="booking-notes-input"
+                                        placeholder="Mô tả sơ lược tình trạng sức khỏe mà bạn đang gặp phải..."></textarea>
+                                </div>
+                            </div>
+                            <div class="row g-3 mt-4">
+                                <div class="col-md-6 order-2 order-md-1">
+                                    <button class="btn btn-light w-100 py-3 fw-bold fs-5 btn-3d-cancel text-danger"
+                                        onclick="clearBookingSelection()"><i class="fas fa-times me-2"></i> Hủy
+                                        chọn</button>
+                                </div>
+                                <div class="col-md-6 order-1 order-md-2" id="booking-submit-wrapper" style="display: none; opacity: 0; transition: opacity 0.4s ease;">
+                                    <button class="btn btn-modern w-100 py-3 fw-bold fs-5 btn-3d-submit"
+                                        onclick="navigate('dv5')">Tiếp tục bước xác nhận <i
+                                            class="fas fa-arrow-right ms-2"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </section>
 
         <!-- 4. ĐẶT LỊCH BÁC SĨ -->
-        <section id="dv2" class="page-content">
-            <h5 class="section-title">Đội ngũ Bác sĩ chuyên khoa</h5>
-            <div class="data-card">
-                <div class="d-flex align-items-center">
-                    <img src="https://i.pravatar.cc/150?u=8" class="rounded-circle me-3" width="65">
-                    <div>
-                        <h6 class="fw-bold mb-0">PGS.TS Nguyễn Văn Thắng</h6><small class="text-primary fw-bold">Chuyên
-                            gia Tim mạch</small>
+        <section id="dv2" class="page-content bg-light premium-section-padding">
+            <div class="container py-4 bg-white rounded-4 shadow-sm" style="max-width: 1200px; margin: auto;">
+                <!-- Đã loại bỏ Breadcrumb -->
+
+                <div class="text-center mb-5 mt-2">
+                    <h3 class="fw-bold text-primary text-uppercase mb-2"><i class="fas fa-user-md"></i> ĐỘI NGŨ BÁC SĨ
+                        CHUYÊN KHOA</h3>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <span
+                            style="width: 40px; height: 1px; background-color: #a0cdef; display: inline-block;"></span>
+                        <i class="fas fa-plus mx-2" style="color: #4da6e7; font-size: 0.8rem;"></i>
+                        <span
+                            style="width: 40px; height: 1px; background-color: #a0cdef; display: inline-block;"></span>
                     </div>
                 </div>
-                <button class="btn btn-modern" onclick="navigate('dv3')">Chọn lịch</button>
-            </div>
-            <div class="data-card">
-                <div class="d-flex align-items-center">
-                    <img src="https://i.pravatar.cc/150?u=12" class="rounded-circle me-3" width="65">
-                    <div>
-                        <h6 class="fw-bold mb-0">ThS.BS Lê Mỹ Linh</h6><small class="text-primary fw-bold">Chuyên khoa
-                            Da liễu</small>
+
+                <!-- Ô TÌM KIẾM -->
+                <div class="px-md-5 mb-5">
+                    <div class="input-group shadow-sm rounded-pill overflow-hidden border">
+                        <span class="input-group-text bg-white border-0 ps-4 text-primary"><i
+                                class="fas fa-search"></i></span>
+                        <input type="text" class="form-control border-0 py-3"
+                            placeholder="Tìm kiếm tên bác sĩ, chuyên khoa..." id="doctorSearchInput"
+                            oninput="searchDoctors()">
                     </div>
                 </div>
-                <button class="btn btn-modern" onclick="navigate('dv3')">Chọn lịch</button>
+
+                <!-- DANH SÁCH BÁC SĨ SẼ ĐƯỢC JAVASCRIPT RENDER VÀO ĐÂY -->
+                <div class="row g-4 px-lg-4 mb-4" id="doctor-list-container">
+                    <!-- Javascript Data -->
+                </div>
+
+                <!-- THANH PHÂN TRANG -->
+                <nav aria-label="Page navigation" class="mt-5">
+                    <ul class="pagination justify-content-center custom-pagination" id="doctor-pagination">
+                        <!-- Phân trang sẽ render tự động bằng Javascript -->
+                    </ul>
+                </nav>
             </div>
         </section>
 
-        <!-- 5. LIÊN HỆ -->
+        <!-- 5. XÁC NHẬN ĐẶT LỊCH KHÁM (dv5) -->
+        <section id="dv5" class="page-content bg-light premium-section-padding">
+            <div class="container py-4 bg-white rounded-4 shadow-sm" style="max-width: 900px; margin: auto;">
+                
+                <div class="text-center mb-5 mt-2 position-relative">
+                    <div class="position-absolute top-50 start-50 translate-middle" style="width: 150px; height: 40px; background: rgba(13, 202, 240, 0.1); filter: blur(20px); border-radius: 50%; z-index: 0;"></div>
+                    <h2 class="fw-bold text-primary text-uppercase mb-2 position-relative z-1" style="letter-spacing: 1px; text-shadow: 2px 2px 4px rgba(0,0,0,0.05);"><i class="fas fa-check-circle text-success me-2"></i> XÁC NHẬN LỊCH HẸN</h2>
+                    <div class="d-flex justify-content-center align-items-center position-relative z-1">
+                        <span style="width: 60px; height: 2px; background: linear-gradient(90deg, transparent, #28a745); display: inline-block;"></span>
+                        <i class="fas fa-heartbeat mx-3" style="color: #28a745; font-size: 0.8rem;"></i>
+                        <span style="width: 60px; height: 2px; background: linear-gradient(270deg, transparent, #28a745); display: inline-block;"></span>
+                    </div>
+                </div>
+
+                <div class="row g-4 px-md-3">
+                    <!-- Cột trái: Thông tin lịch khám đã chọn (Tự động điền) -->
+                    <div class="col-lg-5">
+                        <div class="card border-0 rounded-4 h-100 booking-form-3d" style="background: linear-gradient(135deg, #f8faff 0%, #ffffff 100%);">
+                            <div class="card-body p-4">
+                                <h5 class="fw-bold text-primary mb-4 border-bottom pb-3"><i class="fas fa-info-circle me-2"></i> Thông tin Đăng ký</h5>
+                                
+                                <div class="text-center mb-4">
+                                    <div class="rounded-circle overflow-hidden shadow-sm mx-auto target-img-glow mb-3" style="width: 110px; height: 110px; border: 4px solid white;">
+                                        <img src="" id="confirm-target-img" class="w-100 h-100 object-fit-cover" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3774/3774299.png'">
+                                    </div>
+                                    <span class="badge bg-primary px-3 py-2 rounded-pill fs-7 mb-2" id="confirm-target-type">Cơ sở y tế</span>
+                                    <h5 class="fw-bold text-primary mb-1" id="confirm-target-name">Tên Bệnh Viện/Bác Sĩ</h5>
+                                    <div class="text-secondary small" id="confirm-target-desc"><i class="fas fa-map-marker-alt text-danger me-1"></i> Khu vực</div>
+                                </div>
+
+                                <div class="bg-white rounded-3 p-3 shadow-sm border border-light">
+                                    <div class="d-flex justify-content-between border-bottom pb-2 mb-2">
+                                        <span class="text-muted small"><i class="fas fa-stethoscope me-1"></i> Chuyên khoa</span>
+                                        <span class="fw-bold text-dark text-end" id="confirm-specialty">Chưa chọn</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between border-bottom pb-2 mb-2">
+                                        <span class="text-muted small"><i class="fas fa-calendar-alt me-1"></i> Ngày khám</span>
+                                        <span class="fw-bold text-primary text-end" id="confirm-date">Chưa chọn</span>
+                                    </div>
+                                    <div class="d-flex flex-column pt-1">
+                                        <span class="text-muted small mb-1"><i class="fas fa-notes-medical me-1"></i> Triệu chứng sơ bộ</span>
+                                        <span class="fw-medium text-dark small" style="white-space: pre-wrap;" id="confirm-notes">Không có mô tả</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cột phải: Form nhập thông tin Bệnh nhân -->
+                    <div class="col-lg-7">
+                        <div class="card border-0 rounded-4 p-4 booking-form-3d h-100">
+                            <h5 class="fw-bold text-dark mb-4 border-bottom pb-3"><i class="fas fa-user-edit text-info me-2"></i> Điền thông tin Bệnh nhân</h5>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label class="form-label fw-bold text-secondary">Họ và Tên <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control custom-3d-input" placeholder="Nhập đầy đủ họ tên (Có dấu)">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold text-secondary">Số điện thoại <span class="text-danger">*</span></label>
+                                    <input type="tel" class="form-control custom-3d-input" placeholder="VD: 0901234567">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold text-secondary">Số CCCD / CMND <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control custom-3d-input" placeholder="Số định danh cá nhân">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-bold text-secondary">Địa chỉ liên hệ <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control custom-3d-input" placeholder="Số nhà, Tên đường, Quận, Thành phố...">
+                                </div>
+                            </div>
+
+                            <div class="mt-5 text-center">
+                                <button class="btn btn-modern w-100 py-3 fw-bold fs-5 btn-3d-submit mb-3" onclick="navigate('dv6')">
+                                    Hoàn Tất Đăng Ký <i class="fas fa-check-circle ms-2"></i>
+                                </button>
+                                <button class="btn btn-light px-4 py-2 text-muted shadow-sm rounded-pill hover-opacity" onclick="navigate('dv3')">
+                                    <i class="fas fa-arrow-left me-1"></i> Quay lại chỉnh sửa
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 6. ĐĂNG KÝ THÀNH CÔNG (dv6) -->
+        <section id="dv6" class="page-content bg-light premium-section-padding">
+            <div class="container py-5 mt-4">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-6 text-center">
+                        <div class="card border-0 rounded-4 shadow-sm p-5 booking-3d-card" style="background: linear-gradient(145deg, #ffffff, #f4fafe);">
+                            
+                            <!-- Icon Success -->
+                            <div class="mb-4 position-relative d-inline-block icon-pulse-wrapper">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 100px; height: 100px; background: rgba(40, 167, 69, 0.1); border: 2px solid rgba(40, 167, 69, 0.3);">
+                                    <i class="fas fa-check text-success" style="font-size: 3rem; filter: drop-shadow(0 4px 6px rgba(40,167,69,0.3));"></i>
+                                </div>
+                            </div>
+
+                            <h2 class="fw-bold text-success mb-3">Đăng ký thành công!</h2>
+                            <p class="text-secondary fs-5 mb-4">Hệ thống sẽ gửi tin nhắn <span class="fw-bold text-dark">SMS xác nhận</span> kèm mã số khám đến điện thoại của bạn trong giây lát.</p>
+                            
+                            <hr class="text-muted w-50 mx-auto mb-4">
+                            
+                            <div class="text-muted small mb-4">
+                                Vui lòng đến trước giờ khám ít nhất 15 phút để làm thủ tục. Cảm ơn bạn đã lựa chọn dịch vụ của HealthConnect!
+                            </div>
+
+                            <button class="btn btn-modern rounded-pill px-5 py-3 fw-bold btn-3d-submit shadow-sm" onclick="navigate('home')">
+                                <i class="fas fa-home me-2"></i> Quay về Trang chủ
+                            </button>
+                            <br>
+                            <button class="btn btn-link text-primary mt-3 text-decoration-none fw-medium hover-opacity" onclick="navigate('dv1')">
+                                Xem thêm Cơ sở y tế
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. LIÊN HỆ -->
         <section id="contact" class="page-content">
             <h5 class="section-title">Liên hệ với chúng tôi</h5>
             <div class="row g-4">
