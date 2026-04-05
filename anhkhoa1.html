@@ -113,6 +113,52 @@
         .form-control {
             border-radius: 10px; padding: 12px; border: 1px solid #e0e0e0;
         }
+        /* Hiệu ứng 3D & Hiện đại */
+.glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    perspective: 1000px;
+}
+
+/* Hiệu ứng nhấc bổng 3D khi di chuột vào card */
+.hover-3d:hover {
+    transform: translateY(-12px) rotateX(5deg) rotateY(2deg);
+    box-shadow: 0 25px 50px rgba(34, 129, 196, 0.2);
+}
+
+/* Hiệu ứng phát sáng nhẹ cho các icon */
+.icon-3d {
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 5px 10px rgba(34, 129, 196, 0.3));
+}
+
+.hover-3d:hover .icon-3d {
+    transform: scale(1.2) translateZ(20px);
+    color: #00d2ff !important;
+}
+
+/* Nút bấm kiểu 3D */
+.btn-3d {
+    transition: all 0.3s;
+    border-bottom: 4px solid #1a6296;
+}
+
+.btn-3d:active {
+    transform: translateY(2px);
+    border-bottom: 0px solid transparent;
+}
+
+/* Animation cho form đăng nhập */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+.floating-ui { animation: float 4s ease-in-out infinite; }
     </style>
 </head>
 <body>
@@ -260,26 +306,75 @@
             </div>
         </section>
 
-        <!-- 6. GIỚI THIỆU -->
-        <section id="intro" class="page-content">
-            <h5 class="section-title">Về HealthConnect</h5>
-            <div class="card border-0 shadow-sm rounded-4 p-4 overflow-hidden">
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <h2 class="fw-bold text-primary mb-4">Sứ mệnh của chúng tôi</h2>
-                        <p>HealthConnect là nền tảng tiên phong trong việc số hóa quy trình y tế tại Việt Nam. Chúng tôi giúp xóa bỏ rào cản về khoảng cách và thời gian chờ đợi tại bệnh viện.</p>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Kết nối trực tiếp bác sĩ đầu ngành</li>
-                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Hồ sơ y tế điện tử bảo mật</li>
-                            <li><i class="fas fa-check-circle text-success me-2"></i> Hỗ trợ khẩn cấp 24/7</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded-4 shadow">
-                    </div>
+        <!-- 6. GIỚI THIỆU (CẢI TIẾN) -->
+       <style>
+        /* Hiệu ứng cho hình ảnh trong ô 3D */
+.card-img-3d {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    transition: all 0.4s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.hover-3d:hover .card-img-3d {
+    transform: translateZ(30px) scale(1.05); /* Hình ảnh nhô lên khi di chuột */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+       </style>
+       <section id="intro" class="page-content">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-primary">Về HealthConnect</h2>
+            <p class="text-muted">Giải pháp y tế thông minh hàng đầu</p>
+        </div>
+    
+        <div class="row g-4">
+            <!-- Ô 1: Bác sĩ -->
+            <div class="col-md-4">
+                <div class="glass-card hover-3d p-3 text-center h-100">
+                    <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=500&q=80" 
+                         alt="Bác sĩ" class="card-img-3d">
+                    <h5 class="fw-bold text-primary">Đội ngũ Bác sĩ</h5>
+                    <p class="small text-muted px-2">Hội tụ những chuyên gia y tế hàng đầu với nhiều năm kinh nghiệm tại các bệnh viện trung ương.</p>
                 </div>
             </div>
-        </section>
+    
+            <!-- Ô 2: Công nghệ -->
+            <div class="col-md-4">
+                <div class="glass-card hover-3d p-3 text-center h-100">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=500&q=80" 
+                         alt="Công nghệ" class="card-img-3d">
+                    <h5 class="fw-bold text-primary">Đặt lịch 24/7</h5>
+                    <p class="small text-muted px-2">Hệ thống vận hành thông minh, cho phép bạn chủ động chọn thời gian khám chỉ trong vài giây.</p>
+                </div>
+            </div>
+    
+            <!-- Ô 3: Bảo mật -->
+            <div class="col-md-4">
+                <div class="glass-card hover-3d p-3 text-center h-100">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=500&q=80" 
+                         alt="Bảo mật" class="card-img-3d">
+                    <h5 class="fw-bold text-primary">An toàn Dữ liệu</h5>
+                    <p class="small text-muted px-2">Mọi thông tin bệnh án và lịch sử khám bệnh được bảo mật tuyệt đối theo tiêu chuẩn quốc tế.</p>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Phần mô tả thêm bên dưới cho chuyên nghiệp -->
+        <div class="mt-5 p-4 glass-card hover-3d">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h3 class="fw-bold text-primary">Sứ mệnh của chúng tôi</h3>
+                    <p style="text-align: justify;">HealthConnect không chỉ là một ứng dụng đặt lịch, mà là người bạn đồng hành tin cậy trên hành trình chăm sóc sức khỏe của bạn. chúng tôi cam kết mang lại sự tiện lợi, minh bạch và chất lượng y tế tốt nhất cho cộng đồng.</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <button class="btn btn-modern px-5 py-3 rounded-pill btn-3d" onclick="navigate('contact')">Tìm hiểu thêm</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
         <!-- 7. XÁC NHẬN (DV5) -->
         <section id="dv5" class="page-content">
@@ -309,71 +404,153 @@
             </div><br>
             <button class="btn btn-outline-primary px-5 rounded-pill" onclick="navigate('home')">Trở về trang chủ</button>
         </section>
+<!-- 9. PHẦN ĐĂNG NHẬP & ĐĂNG KÝ (ĐÃ SỬA LỖI) -->
+<section id="login" class="page-content">
+    <div class="row justify-content-center align-items-center mt-5">
+        <!-- Cột trang trí -->
+        <div class="col-md-5 d-none d-lg-block floating-ui">
+            <div class="p-4 text-center">
+                <h2 class="fw-bold text-primary">Y tế số 4.0</h2>
+                <p class="text-muted">Đăng nhập nhanh chóng bằng mã OTP qua điện thoại.</p>
+                <img src="https://cdn-icons-png.flaticon.com/512/2859/2859137.png" class="img-fluid" style="width: 180px;">
+            </div>
+        </div>
 
-        <!-- 9. ĐĂNG NHẬP -->
-        <section id="login" class="page-content">
-            <div class="row justify-content-center">
-                <div class="col-md-5">
-                    <div class="card border-0 shadow-sm rounded-4 p-4 p-lg-5">
-                        <h3 class="fw-bold text-center mb-4">Đăng Nhập</h3>
-                        <div class="mb-3"><input type="text" class="form-control" placeholder="Số điện thoại"></div>
-                        <div class="mb-4"><input type="password" class="form-control" placeholder="Mật khẩu"></div>
-                        <button class="btn btn-modern w-100 py-3" onclick="navigate('home')">VÀO HỆ THỐNG</button>
+        <!-- Cột Form -->
+        <div class="col-md-5">
+            <div class="glass-card p-2 shadow-lg">
+                <!-- Tab chuyển đổi -->
+                <div id="auth-tabs" class="d-flex p-2 gap-2 bg-light rounded-4 mb-3">
+                    <button id="tab-login-btn" class="btn flex-fill py-2 fw-bold rounded-3 shadow-sm bg-white" onclick="changeTab('login')">Đăng Nhập</button>
+                    <button id="tab-register-btn" class="btn flex-fill py-2 fw-bold text-muted border-0" onclick="changeTab('register')">Đăng Ký</button>
+                </div>
+
+                <div class="card-body p-4">
+                    <!-- KHUNG ĐĂNG NHẬP -->
+                    <div id="form-login-box">
+                        <div class="mb-4 text-center">
+                            <h5 class="fw-bold">Xác thực số điện thoại</h5>
+                            <p class="small text-muted">Hệ thống sẽ gửi mã 6 số về điện thoại bạn</p>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="small fw-bold mb-1">Số điện thoại</label>
+                            <input type="text" id="loginPhone" class="form-control py-2" placeholder="09xx xxx xxx">
+                        </div>
+
+                        <!-- Vùng nhập OTP (Ẩn khi bắt đầu) -->
+                        <div id="otp-section" style="display: none;" class="mb-4 bg-light p-3 rounded-3 border">
+                            <label class="small fw-bold mb-1 text-primary">Nhập mã OTP vừa nhận</label>
+                            <input type="text" id="otpInput" class="form-control text-center fw-bold fs-4" placeholder="0 0 0 0 0 0" maxlength="6">
+                        </div>
+
+                        <button id="btn-get-otp" class="btn btn-modern btn-3d w-100 py-3" onclick="requestOTP()">NHẬN MÃ XÁC THỰC</button>
+                        <button id="btn-login-final" style="display: none;" class="btn btn-success btn-3d w-100 py-3" onclick="navigate('home')">ĐĂNG NHẬP NGAY</button>
+                    </div>
+
+                    <!-- KHUNG ĐĂNG KÝ -->
+                    <div id="form-register-box" style="display: none;">
+                        <div class="mb-3">
+                            <label class="small fw-bold">Họ và tên</label>
+                            <input type="text" class="form-control" placeholder="Nguyễn Văn A">
+                        </div>
+                        <div class="mb-4">
+                            <label class="small fw-bold">Số điện thoại đăng ký</label>
+                            <input type="text" class="form-control" placeholder="09xx xxx xxx">
+                        </div>
+                        <button class="btn btn-modern btn-3d w-100 py-3" onclick="alert('Yêu cầu đăng ký đã được gửi!'); changeTab('login')">TIẾP TỤC</button>
                     </div>
                 </div>
             </div>
-        </section>
-
-    </div>
-
-    <!-- FOOTER -->
-    <footer class="py-5 bg-white border-top mt-5">
-        <div class="container text-center">
-            <h5 class="fw-bold text-primary">HealthConnect</h5>
-            <p class="text-muted small">Giải pháp chăm sóc sức khỏe toàn diện cho người Việt.</p>
-            <div class="d-flex justify-content-center gap-3">
-                <a href="#" class="text-muted"><i class="fab fa-facebook fa-lg"></i></a>
-                <a href="#" class="text-muted"><i class="fab fa-youtube fa-lg"></i></a>
-                <a href="#" class="text-muted"><i class="fab fa-linkedin fa-lg"></i></a>
-            </div>
         </div>
-    </footer>
+    </div>
+</section></section>   
+ <!-- SCRIPTS -->
+ <script>
+    // 1. Hàm điều hướng giữa các trang (Trang chủ, Cơ sở y tế, v.v...)
+    function navigate(pId) {
+        // Ẩn tất cả các section
+        const sections = document.querySelectorAll('.page-content');
+        sections.forEach(s => s.style.display = 'none');
+        
+        // Hiện section mong muốn
+        const target = document.getElementById(pId);
+        if(target) {
+            target.style.display = 'block';
+        }
 
-    <!-- SCRIPTS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function navigate(pId) {
-            // 1. Ẩn tất cả các trang
-            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
-            
-            // 2. Hiển thị trang được chọn
-            document.getElementById(pId).classList.add('active');
-            
-            // 3. Cập nhật trạng thái Active trên Menu
-            document.querySelectorAll('.nav-link').forEach(n => {
-                n.classList.remove('active');
-                // Nếu nội dung onclick của nav-link chứa pId thì active nó
-                if(n.getAttribute('onclick').includes(`'${pId}'`)) {
-                    n.classList.add('active');
-                }
-            });
-
-            // 4. Cuộn lên đầu trang
-            window.scrollTo({top: 0, behavior: 'smooth'});
-
-            // 5. Đóng menu trên mobile nếu đang mở
-            const navbarCollapse = document.getElementById('navbarNav');
-            if (navbarCollapse.classList.contains('show')) {
-                new bootstrap.Collapse(navbarCollapse).hide();
+        // Cập nhật trạng thái menu Navbar
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+            if(link.getAttribute('onclick') && link.getAttribute('onclick').includes("'" + pId + "'")) {
+                link.classList.add('active');
             }
+        });
+        window.scrollTo(0,0);
+    }
+
+    // 2. Hàm chuyển đổi giữa Đăng nhập và Đăng ký
+    function changeTab(type) {
+        const loginBox = document.getElementById('form-login-box');
+        const registerBox = document.getElementById('form-register-box');
+        const loginBtn = document.getElementById('tab-login-btn');
+        const registerBtn = document.getElementById('tab-register-btn');
+
+        // Reset trạng thái OTP khi chuyển tab
+        document.getElementById('otp-section').style.display = 'none';
+        document.getElementById('btn-get-otp').style.display = 'block';
+        document.getElementById('btn-login-final').style.display = 'none';
+        document.getElementById('loginPhone').readOnly = false;
+
+        if (type === 'login') {
+            loginBox.style.display = 'block';
+            registerBox.style.display = 'none';
+            loginBtn.classList.add('bg-white', 'shadow-sm');
+            loginBtn.classList.remove('text-muted');
+            registerBtn.classList.add('text-muted');
+            registerBtn.classList.remove('bg-white', 'shadow-sm');
+        } else {
+            loginBox.style.display = 'none';
+            registerBox.style.display = 'block';
+            registerBtn.classList.add('bg-white', 'shadow-sm');
+            registerBtn.classList.remove('text-muted');
+            loginBtn.classList.add('text-muted');
+            loginBtn.classList.remove('bg-white', 'shadow-sm');
+        }
+    }
+
+    // 3. Hàm yêu cầu gửi OTP
+    function requestOTP() {
+        const phone = document.getElementById('loginPhone').value;
+        if(phone.length < 10) {
+            alert("Vui lòng nhập số điện thoại hợp lệ!");
+            return;
         }
 
-        function finishBooking() {
-            const name = document.getElementById('pName').value;
-            if(name.length < 4) return alert("Vui lòng nhập đầy đủ họ tên");
-            document.getElementById('resCode').innerText = "#HC-" + Math.floor(1000 + Math.random()*9000);
-            navigate('dv6');
+        alert("Mã OTP đã được gửi thành công đến số " + phone);
+        
+        // Hiện ô nhập mã và đổi nút bấm
+        document.getElementById('otp-section').style.display = 'block';
+        document.getElementById('btn-get-otp').style.display = 'none';
+        document.getElementById('btn-login-final').style.display = 'block';
+        document.getElementById('loginPhone').readOnly = true; // Khóa ô nhập số điện thoại
+    }
+
+    // 4. Hàm hoàn thành đặt lịch (Trang DV5)
+    function finishBooking() {
+        const pName = document.getElementById('pName').value;
+        if(pName.length < 2) {
+            alert("Vui lòng nhập tên bệnh nhân");
+            return;
         }
-    </script>
-</body>
+        document.getElementById('resCode').innerText = "#HC-" + Math.floor(1000 + Math.random()*9000);
+        navigate('dv6');
+    }
+
+    // Khi web bắt đầu, hiện trang chủ
+    window.onload = function() {
+        navigate('home');
+    }
+</script>
+    </script></body>
 </html>
