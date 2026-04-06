@@ -1024,3 +1024,48 @@ document.addEventListener('DOMContentLoaded', () => {
         specSelect.addEventListener('change', checkBookingFormValidity);
     }
 });
+function changeTab(type) {
+    const loginBox = document.getElementById('form-login-box');
+    const registerBox = document.getElementById('form-register-box');
+    const loginBtn = document.getElementById('tab-login-btn');
+    const registerBtn = document.getElementById('tab-register-btn');
+
+    // Reset trạng thái OTP khi chuyển tab
+    document.getElementById('otp-section').style.display = 'none';
+    document.getElementById('btn-get-otp').style.display = 'block';
+    document.getElementById('btn-login-final').style.display = 'none';
+    document.getElementById('loginPhone').readOnly = false;
+
+    if (type === 'login') {
+        loginBox.style.display = 'block';
+        registerBox.style.display = 'none';
+        loginBtn.classList.add('bg-white', 'shadow-sm');
+        loginBtn.classList.remove('text-muted');
+        registerBtn.classList.add('text-muted');
+        registerBtn.classList.remove('bg-white', 'shadow-sm');
+    } else {
+        loginBox.style.display = 'none';
+        registerBox.style.display = 'block';
+        registerBtn.classList.add('bg-white', 'shadow-sm');
+        registerBtn.classList.remove('text-muted');
+        loginBtn.classList.add('text-muted');
+        loginBtn.classList.remove('bg-white', 'shadow-sm');
+    }
+}
+
+// Hàm yêu cầu gửi OTP
+function requestOTP() {
+    const phone = document.getElementById('loginPhone').value;
+    if(phone.length < 10) {
+        alert("Vui lòng nhập số điện thoại hợp lệ!");
+        return;
+    }
+
+    alert("Mã OTP đã được gửi thành công đến số " + phone);
+    
+    // Hiện ô nhập mã và đổi nút bấm
+    document.getElementById('otp-section').style.display = 'block';
+    document.getElementById('btn-get-otp').style.display = 'none';
+    document.getElementById('btn-login-final').style.display = 'block';
+    document.getElementById('loginPhone').readOnly = true; // Khóa ô nhập số điện thoại
+}
