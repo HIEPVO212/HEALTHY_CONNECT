@@ -59,8 +59,10 @@ body {
 /* --- Layout --- */
 .page-container {
     max-width: 1400px;
-    margin: 40px auto;
-    padding: 0 40px;
+    margin: 60px auto;
+    /* Tăng khoảng cách với Navbar lên 60px */
+    padding: 0 20px;
+    /* Giảm padding hai bên để tận dụng không gian tốt hơn */
 }
 
 .page-content {
@@ -75,13 +77,20 @@ body {
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(20px);
+        /* Tăng chiều sâu của hiệu ứng bay lên */
     }
 
     to {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Quy chuẩn Padding cho các trang Medical cao cấp */
+.premium-section-padding {
+    padding-top: 50px !important;
+    padding-bottom: 80px !important;
 }
 
 /* --- Common UI Components --- */
@@ -648,12 +657,14 @@ body {
 }
 
 /* --- DOCTOR NAVIGATION --- */
-.doctor-prev, .doctor-next {
+.doctor-prev,
+.doctor-next {
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.doctor-prev:hover, .doctor-next:hover {
+.doctor-prev:hover,
+.doctor-next:hover {
     background-color: var(--primary-color) !important;
     color: white !important;
     transform: translateY(-50%) scale(1.1);
@@ -664,8 +675,15 @@ body {
 }
 
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .doctor-bio {
@@ -674,10 +692,273 @@ body {
 
 /* Kiểu cho tên bác sĩ trên 1 dòng */
 .doctor-name {
-    font-size: 0.85rem !important; /* Nhỏ hơn một chút để vừa */
+    font-size: 0.85rem !important;
+    /* Nhỏ hơn một chút để vừa */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     display: block;
     width: 100%;
+}
+
+/* =========================================
+   THIẾT KẾ CHO DANH SÁCH BỆNH VIỆN DẠNG 3D
+=========================================== */
+.hospital-card-3d {
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(34, 129, 196, 0.05) !important;
+    transform-style: preserve-3d;
+}
+
+.hospital-card-3d:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(34, 129, 196, 0.15), 0 0 20px rgba(0, 210, 255, 0.1);
+    border-color: rgba(34, 129, 196, 0.3) !important;
+}
+
+.hospital-img-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.hospital-img-wrapper img {
+    transition: transform 0.6s ease;
+}
+
+.hospital-card-3d:hover .hospital-img-wrapper img {
+    transform: scale(1.15) rotate(2deg);
+}
+
+.hospital-title {
+    transition: color 0.3s;
+}
+
+.hospital-card-3d:hover .hospital-title {
+    color: #0dcaf0 !important;
+}
+
+/* CUSTOM PAGINATION BIẾN THỂ TỪ BOOTSTRAP */
+.custom-pagination .page-item .page-link {
+    border: none;
+    background: #f8faff;
+    color: var(--primary-color);
+    margin: 0 5px;
+    border-radius: 50% !important;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    transition: all 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.custom-pagination .page-item.active .page-link {
+    background: var(--primary-gradient);
+    color: white;
+    box-shadow: 0 5px 15px rgba(34, 129, 196, 0.4);
+    transform: scale(1.1);
+}
+
+.custom-pagination .page-item:not(.active):not(.disabled) .page-link:hover {
+    background: rgba(34, 129, 196, 0.1);
+    transform: translateY(-3px);
+}
+
+.custom-pagination .page-item.disabled .page-link {
+    background: #f1f1f1;
+    color: #aaa;
+    box-shadow: none;
+}
+
+/* =========================================
+   THIẾT KẾ CHO DANH SÁCH BÁC SĨ DẠNG 3D
+=========================================== */
+.doctor-card-3d {
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(23, 75, 147, 0.05) !important;
+    transform-style: preserve-3d;
+}
+
+.doctor-card-3d:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 40px rgba(23, 75, 147, 0.15), 0 0 15px rgba(13, 202, 240, 0.1);
+    border-color: rgba(23, 75, 147, 0.2) !important;
+}
+
+.doctor-img-wrapper {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.doctor-card-3d:hover .doctor-img-wrapper {
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 15px rgba(23, 75, 147, 0.3) !important;
+}
+
+.doctor-card-3d:hover .doctor-img-wrapper img {
+    transform: scale(1.1);
+}
+
+.doctor-title {
+    transition: color 0.3s;
+}
+
+.doctor-card-3d:hover .doctor-title {
+    color: var(--primary-color) !important;
+}
+
+/* =========================================
+   THIẾT KẾ 3D CHO TRANG ĐẶT LỊCH KHÁM (BOOKING)
+=========================================== */
+
+/* Trạng thái trống (Empty State) */
+.booking-3d-card {
+    background: linear-gradient(145deg, #ffffff, #f0f5fa);
+    border-radius: 30px;
+    box-shadow:
+        20px 20px 40px rgba(0, 0, 0, 0.03),
+        -20px -20px 40px rgba(255, 255, 255, 0.8),
+        inset 0 0 0 1px rgba(255, 255, 255, 1);
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.icon-pulse-wrapper {
+    position: relative;
+    display: inline-block;
+    animation: floatingIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatingIcon {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.booking-floating-btn {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    transform-style: preserve-3d;
+    position: relative;
+    overflow: hidden;
+}
+
+.booking-floating-btn:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 15px 25px rgba(23, 75, 147, 0.2) !important;
+}
+
+/* Trạng thái có Form (Form State) */
+.booking-target-3d {
+    background: linear-gradient(135deg, rgba(23, 75, 147, 0.05) 0%, rgba(13, 202, 240, 0.05) 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.7) !important;
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.06),
+        /* Tăng bóng để khối trông sâu hơn */
+        inset 0 2px 5px rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    transition: all 0.4s ease;
+}
+
+.booking-target-3d:hover {
+    transform: translateZ(20px) translateY(-5px);
+    box-shadow:
+        0 25px 45px rgba(23, 75, 147, 0.1),
+        inset 0 2px 5px rgba(255, 255, 255, 1);
+}
+
+.target-img-glow {
+    box-shadow: 0 0 20px rgba(23, 75, 147, 0.2);
+    transition: transform 0.4s ease;
+}
+
+.booking-target-3d:hover .target-img-glow {
+    transform: scale(1.05) rotate(-2deg);
+    box-shadow: 0 0 25px rgba(23, 75, 147, 0.4);
+}
+
+.booking-form-3d {
+    background: #ffffff;
+    box-shadow:
+        10px 10px 30px rgba(0, 0, 0, 0.03),
+        -10px -10px 30px rgba(255, 255, 255, 1);
+    border: 1px solid rgba(23, 75, 147, 0.03);
+    position: relative;
+    z-index: 1;
+}
+
+.custom-3d-input {
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    background: #f8faff;
+    padding: 12px 15px;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.02), inset -2px -2px 5px rgba(255, 255, 255, 1);
+    transition: all 0.3s ease;
+}
+
+.custom-3d-input:focus {
+    background: #ffffff;
+    outline: none;
+    box-shadow: 0 5px 15px rgba(23, 75, 147, 0.1), inset 0 0 0 2px rgba(23, 75, 147, 0.2) !important;
+    border-color: transparent !important;
+    transform: translateY(-2px);
+}
+
+.btn-3d-submit {
+    background: var(--primary-gradient) !important;
+    border: none;
+    border-radius: 12px;
+    color: white !important;
+    box-shadow: 0 10px 20px rgba(23, 75, 147, 0.2) !important;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-3d-submit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+    z-index: -1;
+}
+
+.btn-3d-submit:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 25px rgba(23, 75, 147, 0.4);
+}
+
+.btn-3d-submit:hover::before {
+    left: 100%;
+}
+
+.btn-3d-cancel {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05), -5px -5px 15px rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+.btn-3d-cancel:hover {
+    transform: translateY(-4px);
+    box-shadow: 8px 8px 20px rgba(220, 53, 69, 0.15), -2px -2px 10px rgba(255, 255, 255, 1);
+    color: #dc3545 !important;
 }
