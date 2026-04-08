@@ -1467,9 +1467,9 @@
                             </div>
 
                             <div class="mt-5 text-center">
-                                <button class="btn btn-modern w-100 py-3 fw-bold fs-5 btn-3d-submit mb-3" onclick="navigate('dv6')">
-                                    Hoàn Tất Đăng Ký <i class="fas fa-check-circle ms-2"></i>
-                                </button>
+                             <button class="btn btn-modern w-100 py-3 fw-bold fs-5 btn-3d-submit mb-3" onclick="processBookingAuth()">
+    Hoàn Tất Đăng Ký <i class="fas fa-check-circle ms-2"></i>
+</button>
                                 <button class="btn btn-light px-4 py-2 text-muted shadow-sm rounded-pill hover-opacity" onclick="navigate('dv3')">
                                     <i class="fas fa-arrow-left me-1"></i> Quay lại chỉnh sửa
                                 </button>
@@ -2806,7 +2806,7 @@
                         </div>
 
                         <button id="btn-get-otp" class="btn btn-modern btn-3d w-100 py-3" onclick="requestOTP()">NHẬN MÃ XÁC THỰC</button>
-                        <button id="btn-login-final" style="display: none;" class="btn btn-success btn-3d w-100 py-3" onclick="navigate('home')">ĐĂNG NHẬP NGAY</button>
+                        <button id="btn-login-final" style="display: none;" class="btn btn-success btn-3d w-100 py-3" onclick="handleAuthSuccess()">ĐĂNG NHẬP NGAY</button>
                     </div>
 
                     <!-- KHUNG ĐĂNG KÝ -->
