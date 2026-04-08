@@ -1069,3 +1069,46 @@ function requestOTP() {
     document.getElementById('btn-login-final').style.display = 'block';
     document.getElementById('loginPhone').readOnly = true; // Khóa ô nhập số điện thoại
 }
+// Biến trạng thái để kiểm tra đăng nhập và lịch hẹn chờ
+let isLoggedIn = false; 
+let isPendingBooking = false;
+
+// Hàm xử lý khi nhấn "Hoàn tất đăng ký" tại dv5
+function processBookingAuth() {
+    if (isLoggedIn) {
+        // Nếu đã đăng nhập rồi thì cho qua bước thành công luôn
+        navigate('dv6');
+    } else {
+        // Nếu chưa đăng nhập, đánh dấu là đang có lịch hẹn chờ và chuyển sang trang login
+        isPendingBooking = true;
+        alert("Vui lòng đăng nhập để xác thực thông tin và hoàn tất đặt lịch!");
+        navigate('login');
+    }
+}
+
+// Hàm xử lý khi đăng nhập thành công
+function handleAuthSuccess() {
+    isLoggedIn = true; // Đánh dấu đã đăng nhập
+
+    if (isPendingBooking) {
+        // Nếu có lịch đang chờ, chuyển đến trang thành công dv6
+        isPendingBooking = false; // Reset trạng thái chờ
+        navigate('dv6');
+    } else {
+        // Nếu không có lịch chờ (đăng nhập bình thường), về trang chủ
+        navigate('home');
+    }
+}
+
+// Giả lập hàm request OTP để hiện nút Đăng nhập cuối cùng
+// (Giữ nguyên hoặc cập nhật hàm cũ của bạn nếu cần)
+function requestOTP() {
+    const phone = document.getElementById('loginPhone').value;
+    if (phone.length < 10) {
+        alert("Vui lòng nhập số điện thoại hợp lệ");
+        return;
+    }
+    document.getElementById('otp-section').style.display = 'block';
+    document.getElementById('btn-get-otp').style.display = 'none';
+    document.getElementById('btn-login-final').style.display = 'block';
+}
